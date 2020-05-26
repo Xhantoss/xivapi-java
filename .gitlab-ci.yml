@@ -5,3 +5,11 @@ variables:
   DAST_DISABLED: "true"
   SAST_DISABLED: "true"
   DS_DEFAULT_ANALYZERS: ""
+
+java:
+  stage: test
+  script:
+    - gradle test
+  artifacts:
+    reports:
+      junit: build/test-results/test/**/TEST-*.xml
