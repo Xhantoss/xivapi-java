@@ -1,3 +1,3 @@
-# com.lenardjensen.xivapi-java
+# xivapi-java
 
-The goal of this project is to write a library to use the https://com.lenardjensen.xivapi.com/ directly in Java.
+The goal of this project is to write a library to use the https://xivapi.com/ directly in Java.
