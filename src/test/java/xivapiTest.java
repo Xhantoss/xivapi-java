@@ -1,3 +1,4 @@
+import com.lenardjensen.xivapi;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
