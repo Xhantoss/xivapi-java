@@ -4,7 +4,6 @@ import org.junit.Test;
 import java.io.IOException;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class xivapiConnectionTest {
 
@@ -12,7 +11,8 @@ public class xivapiConnectionTest {
 	public void testKeyIsValid() {
 		xivapiConnection clasUnderTest = new xivapiConnection();
 		try {
-			assertTrue(clasUnderTest.keyIsValid("e8ccb10450ca485a95370bc8fae2812195a8d494f8c84ea081fb57ce698db370"));
+			// Test for invalidity as one can not just push a valid key to a repository
+			// Valid keys can be tested locally
 			assertFalse(clasUnderTest.keyIsValid("thisKeyShouldNotWork"));
 		} catch (IOException e) {
 			e.printStackTrace();

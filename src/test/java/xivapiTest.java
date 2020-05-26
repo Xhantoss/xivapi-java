@@ -1,8 +1,12 @@
 import com.lenardjensen.xivapi;
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.io.IOException;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class xivapiTest {
 
@@ -38,6 +42,20 @@ public class xivapiTest {
 			assertEquals(testedClass.getApiKey(), myKey);
 			assertFalse(testedClass.apiKeyIsValid());
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void testGetCharByID() {
+		// Lodestone ID of 'Adelbern Naxx'
+		int ID = 27075395;
+		try {
+			JSONObject charJSON = testedClass.getCharByID(ID);
+			JSONObject charInfo = charJSON.getJSONObject("Character");
+			String name = charInfo.get("Name").toString();
+			assertEquals(name, "Adelbern Naxx");
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

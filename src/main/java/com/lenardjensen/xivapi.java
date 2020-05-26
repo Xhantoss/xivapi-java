@@ -1,6 +1,7 @@
 package com.lenardjensen;
 
 import com.lenardjensen.impl.xivapiConnection;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -19,6 +20,8 @@ public class xivapi {
 	 * Constructor for the API access
 	 */
 	public xivapi() {
+		apiKey = "";
+		validKeyProvided = false;
 		apiConnection = new xivapiConnection();
 	}
 
@@ -30,6 +33,16 @@ public class xivapi {
 	public xivapi(String key) throws IOException {
 		apiConnection = new xivapiConnection();
 		setApiKey(key);
+	}
+
+	/**
+	 * Returns basic informations about a character
+	 * @param id FFXIV Lodestone ID
+	 * @return JSON Object with basic character data
+	 * @throws IOException Exception thrown when something happened with the connection
+	 */
+	public JSONObject getCharByID(int id) throws IOException {
+		return apiConnection.getRequestOutput("character/"+id, apiKey);
 	}
 
 	/**
