@@ -4,6 +4,7 @@ import com.lenardjensen.impl.xivapiConnection;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * This class will contain the general API handling and store any necessary data
@@ -43,6 +44,38 @@ public class xivapi {
 	 */
 	public JSONObject getCharByID(int id) throws IOException {
 		return apiConnection.getRequestOutput("character/"+id, apiKey);
+	}
+
+
+	/**
+	 * Optional parameter enums for the character request
+	 * More info on: https://xivapi.com/docs/Character#character
+	 */
+	public enum dataParams{AC, MIMO, CJ, FR, FC, FCM, PVP}
+
+	/**
+	 * Returns basic informations about a character
+	 * @param id FFXIV Lodestone ID
+	 * @param extended Whether the response should include more detailed info
+	 * @param data Receive more than just character data
+	 * @return JSON Object with basic character data
+	 * @throws IOException Exception thrown when something happened with the connection
+	 */
+	public JSONObject getCharByID(int id, boolean extended, List<dataParams> data) throws IOException {
+		StringBuilder paramBuilder = new StringBuilder();
+
+		if(extended) {
+			paramBuilder.append("extended=1&");
+		}
+
+		if(!data.isEmpty()) {
+			paramBuilder.append("data=");
+			for(dataParams param : data) {
+				paramBuilder.append(param.name());
+			}
+		}
+
+		return apiConnection.getRequestOutput("character/"+id+"?"+paramBuilder.toString(), apiKey);
 	}
 
 	/**
