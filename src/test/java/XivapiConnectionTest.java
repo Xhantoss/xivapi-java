@@ -1,15 +1,15 @@
-import com.lenardjensen.impl.xivapiConnection;
+import com.lenardjensen.impl.XivapiConnection;
 import org.junit.Test;
 
 import java.io.IOException;
 
 import static org.junit.Assert.assertFalse;
 
-public class xivapiConnectionTest {
+public class XivapiConnectionTest {
 
 	@Test
 	public void testKeyIsValid() {
-		xivapiConnection clasUnderTest = new xivapiConnection();
+		XivapiConnection clasUnderTest = new XivapiConnection();
 		try {
 			// Test for invalidity as one can not just push a valid key to a repository
 			// Valid keys can be tested locally

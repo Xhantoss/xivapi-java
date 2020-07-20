@@ -10,7 +10,7 @@ import java.net.URL;
 /**
  * This class will contain the boilerplate code needed to run the various requests
  */
-public class xivapiConnection {
+public class XivapiConnection {
 
 	/**
 	 * Check key validity by trying a request with the provded key and checking the http response
@@ -30,7 +30,7 @@ public class xivapiConnection {
 	}
 
 	/**
-	 * Performs a GET request against the xivapi
+	 * Performs a GET request against the Xivapi
 	 * @param params Parameters following the "https://xivapi.com/"
 	 * @return JSON object containing the relevant information
 	 * @throws IOException If there was an error with the connection itself
@@ -42,7 +42,7 @@ public class xivapiConnection {
 	}
 
 	/**
-	 * Performs a GET request against the xivapi with a provided key
+	 * Performs a GET request against the Xivapi with a provided key
 	 * @param params Parameters following the "https://xivapi.com/"
 	 * @param key An API key
 	 * @return JSON object containing the relevant information

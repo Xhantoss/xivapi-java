@@ -1,4 +1,4 @@
-import com.lenardjensen.xivapi;
+import com.lenardjensen.Xivapi;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -10,13 +10,13 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class xivapiTest {
+public class XivapiTest {
 
-	private xivapi testedClass;
+	private Xivapi testedClass;
 
 	@Before
 	public void setUp() {
-		testedClass = new xivapi();
+		testedClass = new Xivapi();
 	}
 
 	@Test
@@ -40,7 +40,7 @@ public class xivapiTest {
 		try {
 			String myKey = "InvalidKey";
 			// Check if invalid keys are properly detected
-			testedClass = new xivapi(myKey);
+			testedClass = new Xivapi(myKey);
 			assertEquals(testedClass.getApiKey(), myKey);
 			assertFalse(testedClass.apiKeyIsValid());
 		} catch (Exception e) {
@@ -68,7 +68,7 @@ public class xivapiTest {
 		// Lodestone ID of 'Adelbern Naxx'
 		int ID = 27075395;
 		try {
-			List<xivapi.dataParams> extraParams = Collections.singletonList(xivapi.dataParams.MIMO);
+			List<Xivapi.dataParams> extraParams = Collections.singletonList(Xivapi.dataParams.MIMO);
 			JSONObject charJSON = testedClass.getCharByID(ID, true, extraParams);
 			JSONObject charInfo = charJSON.getJSONObject("Character");
 			JSONArray minions = charJSON.getJSONArray("Minions");
