@@ -1,4 +1,4 @@
-package com.lenardjensen.impl;
+package de.lenardjensen.impl;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -60,7 +60,3 @@ public class XivapiConnection {
 		return getRequestOutput(params+"?private_key="+key);
 	}
 }
-
-// How to JSON:
-//	JSONTokener tokener = new JSONTokener(url.openStream());
-//	JSONObject root = new JSONObject(tokener);

@@ -1,6 +1,6 @@
-package com.lenardjensen;
+package de.lenardjensen;
 
-import com.lenardjensen.impl.XivapiConnection;
+import de.lenardjensen.impl.XivapiConnection;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -37,7 +37,40 @@ public class Xivapi {
 	}
 
 	/**
-	 * Returns basic informations about a character
+	 * Returns information about a specific Free Company using the Lodestone ID
+	 * @param id FFXIV Lodestone ID
+	 * @return JSON Object with FC information
+	 * @throws IOException Exception thrown when something happened with the connection
+	 */
+	public JSONObject getFCByID(String id) throws IOException {
+		return getFCByID(id, false, false);
+	}
+
+	/**
+	 * Returns information about a specific Free Company using the Lodestone ID
+	 * @param id FFXIV Lodestone ID
+	 * @param extended Whether the response should include more detailed info
+	 * @param getMember Set to true if output should contain info about FC members
+	 * @return JSON Object with FC information
+	 * @throws IOException Exception thrown when something happened with the connection
+	 */
+	public JSONObject getFCByID(String id,  boolean extended, boolean getMember) throws IOException {
+		StringBuilder paramBuilder = new StringBuilder();
+
+		if(extended) {
+			paramBuilder.append("extended=1&");
+		}
+
+		if(getMember) {
+			paramBuilder.append("data=FCM");
+		}
+
+		return apiConnection.getRequestOutput("freecompany/" + id + "?" + paramBuilder.toString(), apiKey);
+
+	}
+
+	/**
+	 * Returns basic information about a character
 	 * @param id FFXIV Lodestone ID
 	 * @return JSON Object with basic character data
 	 * @throws IOException Exception thrown when something happened with the connection
@@ -71,11 +104,11 @@ public class Xivapi {
 		if(!data.isEmpty()) {
 			paramBuilder.append("data=");
 			for(dataParams param : data) {
-				paramBuilder.append(param.name());
+				paramBuilder.append(param.name()).append(",");
 			}
 		}
 
-		return apiConnection.getRequestOutput("character/"+id+"?"+paramBuilder.toString(), apiKey);
+		return apiConnection.getRequestOutput("character/" + id + "?" + paramBuilder.toString(), apiKey);
 	}
 
 	/**

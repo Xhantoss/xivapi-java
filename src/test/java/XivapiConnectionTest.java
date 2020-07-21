@@ -1,4 +1,4 @@
-import com.lenardjensen.impl.XivapiConnection;
+import de.lenardjensen.impl.XivapiConnection;
 import org.junit.Test;
 
 import java.io.IOException;
